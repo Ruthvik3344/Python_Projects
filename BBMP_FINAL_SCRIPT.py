@@ -1,5 +1,4 @@
 import os
-import json
 import csv
 import re
 import time
@@ -559,7 +558,7 @@ def fetch_complete_row_data(parent_record, ward_id):
             or ""
             )
 
-    except:
+except Exception:
 
         pass
 
@@ -600,7 +599,7 @@ def fetch_complete_row_data(parent_record, ward_id):
 
         approvals = res.json()
 
-    except:
+    except Exception:
 
         approvals = []
 
@@ -774,14 +773,14 @@ def process_ward(ward,financial_years):
         fy = row.get("Financial_Year", "")
         try:
             return int(fy.split("-")[0])
-        except:
+        except Exception:
             return 0
 
     def work_code_key(row):
         code = row.get("Work_Code_Name", "")
         try:
             return tuple(int(x) for x in code.split("-"))
-        except:
+                             except Exception:
             return (999999,)
 
     output_rows.sort(
